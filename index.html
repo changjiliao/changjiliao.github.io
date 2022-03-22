@@ -86,6 +86,74 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-list常用方法-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/03/22/list%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-md/">list常用方法.md</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2022-03-22T03:02:41.000Z" itemprop="datePublished">2022年03月22日</time>
+</span>
+      
+      
+      
+<a href="/2022/03/22/list%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-md/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>list常用方法<br>1、count()方法<br>用于统计某个元素在列表中出现的次数<br>语法：list.count(obj)<br>obj–列表中统计的对象<br>2、index()方法<br>用于从列表中找出某个值第一个匹配项的索引位置（从左至右查找），返回查找对象的索引位置，如果没有找到对象则抛出异常。<br>语法：list.index(x[, start[x,end]])<br>x– 查找的对象。<br>start– 可选，查找的起始位置。<br>end– 可选，查找的结束位置。<br> 3、insert()方法<br>用于将指定对象插入列表的指定位置<br>语法：list.insert(index, obj)<br>index – 对象obj需要插入的索引位置<br>obj – 要插入列表中的对象<br> insert()方法与append()、extend()方法区别：<br>（1）insert()方法可以插入指定的任意位置，append()和extend()方法只能在列表末尾插入<br>（2）insert()方法是将序列如列表、元组、字典当做一个新的元素插入，extend()方法是将一个序列中的所有元素依次在原列表尾部插入<br>4、pop()方法<br>用于移除列表中的一个元素（默认最后一个元素），并且返回该元素的值<br>语法：list.pop(index)  index是索引值，默认为-1 即删除最后一个元素<br> 5、remove()方法<br>用于移除列表中某个值的第一个匹配项。<br>语法:list.remove(obj)  obj–列表中要移除的对象<br> pop()与remove()的区别<br>（1）pop是删除指定索引位置的元素，是根据索引删除，remove是根据要删除的对象从左至右进行查找，删除第一个匹配的元素<br>6、reverse()方法<br>用于将列表中的元素反向排序<br>语法：list.reverse()<br>7、sort()方法<br>用于对列表进行排序，如果指定参数，则使用比较函数指定的比较函数<br>语法：list.sort(key=None ,reverse=False)<br>key – 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。(没有使用过，暂不理解)<br>reverse – 排序规则，reverse=True 降序 ，reverse=False 升序 默认是升序<br>注意：不同数据类型之间不能进行比较排序，如str和int不能一起比较排序，str、int和tuple、list、dict不能一起比较排序，list不能和其他非list类型比较排序，运行会报错</p>
+<p> 8、clear()方法<br>用户清空列表<br>语法：list.clear()<br> clear()方法相当于del list[:]<br>9、copy()方法<br>用于复制列表，返回复制后的新列表<br>语法：list.copy()<br>注意：修改List不会影响复制后的新列表，修改List中的对象，会影响复制后新列表（改列表不会互相影响，但是修改列表里面的对象会影响到对方列表里面对象）</p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/index.html">http://example.com/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-springboot内置工具类" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -703,6 +771,10 @@
       <ul>
         
           <li>
+            <a href="/2022/03/22/list%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-md/">list常用方法.md</a>
+          </li>
+        
+          <li>
             <a href="/2022/01/25/springboot%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E7%B1%BB/">springboot内置工具类</a>
           </li>
         
@@ -716,10 +788,6 @@
         
           <li>
             <a href="/2021/12/27/hutool%E5%B7%A5%E5%85%B7%E7%B1%BB/">hutool工具类</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/17/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -737,7 +805,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年12月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年03月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年12月</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
