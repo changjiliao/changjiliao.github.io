@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-22T03:04:09.946Z</updated>
+  <updated>2022-04-20T08:37:21.884Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java8的日期时间与字符串的转换.md</title>
+    <link href="http://example.com/2022/04/20/java8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2-md/"/>
+    <id>http://example.com/2022/04/20/java8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2-md/</id>
+    <published>2022-04-20T07:43:08.000Z</published>
+    <updated>2022-04-20T08:37:21.884Z</updated>
+    
+    <content type="html"><![CDATA[<p>LocalDate<br>用于处理日期，yyyy-MM-dd格式。</p><p>LocalDate的基本用法<br>LocalDate localDate = LocalDate.now();<br>###获取当前日期<br>String format = LocalDate.now().format(DateTimeFormatter.ofPattern(“yyyy-MM-dd”));<br>###LocalDate转String<br>LocalDate parse = LocalDate.parse(“2020-01-17”, DateTimeFormatter.ofPattern(“yyyy-MM-dd”));<br>###String转LocalDate<br>Date date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());<br>###LocalDate转Date<br>LocalDate localDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();<br>###Date转LocalDate</p><p>LocalTime<br>用于处理时间，HH:mm:ss格式。</p><p>LocalTime的基本用法<br>LocalTime now = LocalTime.now();<br>###获取当前时间<br>String format = LocalTime.now().format(DateTimeFormatter.ofPattern(“HH:mm:ss”));<br>###LocalTime转String<br>LocalTime parse = LocalTime.parse(“14:32:24”, DateTimeFormatter.ofPattern(“HH:mm:ss”));<br>###String转LocalTime<br>这个需要转换成LocalDateTime在转换成LocalTime<br>LocalTime localTime = LocalTime.now();<br>    LocalDate localDate = LocalDate.now();<br>    LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime);<br>    ZoneId zone = ZoneId.systemDefault();<br>    Instant instant = localDateTime.atZone(zone).toInstant();<br>    java.util.Date date = Date.from(instant);<br>###LocalTime转Date<br>LocalTime localTime = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();<br>###Date转LocalTime</p><p>LocalDateTime<br>用于处理 yyyy-MM-dd HH:mm:ss格式的时间</p><p>LocalDateTime的基本用法<br>LocalDateTime localDateTime= LocalDateTime.now();<br>###获取当前时间<br>LocalDateTime.now().format(DateTimeFormatter.ofPattern(“yyyy-MM-dd HH:mm:ss”))<br>###LocalDateTime转String<br>LocalDateTime parse = LocalDateTime.parse(“2020-01-17 11:52:04”, DateTimeFormatter.ofPattern(“yyyy-MM-dd HH:mm:ss”));<br>###String转LocalDateTime<br>Date from = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());<br>###LocalDateTime转Date<br>LocalDateTime localDateTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault());<br>###Date转LocalDateTime</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;LocalDate&lt;br&gt;用于处理日期，yyyy-MM-dd格式。&lt;/p&gt;
+&lt;p&gt;LocalDate的基本用法&lt;br&gt;LocalDate localDate = LocalDate.now();&lt;br&gt;###获取当前日期&lt;br&gt;String format = LocalDa</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>list常用方法.md</title>
