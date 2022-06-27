@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-04-20T08:37:21.884Z</updated>
+  <updated>2022-06-27T06:43:47.819Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>explain详解.md</title>
+    <link href="http://example.com/2022/06/27/explain%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://example.com/2022/06/27/explain%E8%AF%A6%E8%A7%A3/</id>
+    <published>2022-06-27T06:37:19.000Z</published>
+    <updated>2022-06-27T06:43:47.819Z</updated>
+    
+    <content type="html"><![CDATA[<p>explain详解<br>简介<br>​ 使用explain关键字可以模拟优化器执行sql语句，从而知道MySQL是如何处理你的sql语句。分析你的查询语句或是表结构的性能瓶颈。</p><p>那使用explain具体可以得到哪些信息呢？</p><p>根据id字段可以得到表的读取顺序。<br>数据读取操作的操作类型。<br>哪些索引可以使用。<br>哪些索引被实际使用。<br>表之间的引用。<br>每张表有多少行被优化器查询。<br>用法<br>在select查询语句前加explain关键字：</p><p>explain select * from user;</p><p><img src="https://img2020.cnblogs.com/blog/2032534/202011/2032534-20201111095805158-477901615.png" alt="avatar"></p><p>可以看到查询结果有12个字段，接下来我们对这12个字段进行详细的介绍</p><p>介绍<br>id</p><p>select查询的序列号，包含一组数字，标识查询中执行select子句或操作表的顺序。</p><p>有三种情况：</p><p>id相同，表示查询优化器执行顺序是由上至下。</p><p><img src="https://img2020.cnblogs.com/blog/2032534/202011/2032534-20201111095853353-873467104.png" alt="avatar"></p><p>id不同，如果是子查询，id的序号会递增，id的值越大优先级越高，越先被执行。</p><p><img src="https://img2020.cnblogs.com/blog/2032534/202011/2032534-20201111095919320-93807540.png" alt="avatar"></p><p>id相同和不同的情况都存在，那么id相同的为一组，组内由上至下顺序执行；所有组中，id越大优先级越高，越先被执行。</p><p>select_type</p><p>select_type的值有6个，主要用于区别普通查询、联合查询、子查询等复杂查询，分别是：</p><p>SIMPLE：简单的select查询，查询中不使用子查询或者union。<br>PROMARY：查询中若包含任何复杂的子查询，最外层查询则被标记为PRIMARY，就是最后执行的那个查询。<br>SUBQUERY：在select或where列表中包含了子查询。<br>DERIVED：在from列表中包含的子查询会被标记为DERIVED(衍生)，MySQL会递归执行这些子查询，把结果放在临时表里。<br>UNION：若第二个select出现再union之后，则被标记为union；若union包含在from字句的子查询中，外层select江北标记为DERIVED。<br>UNION RESULT：在union表获取结果的select会被标记为UNION RESULT<br>table</p><p>当前行数据是关于哪张表。</p><p>partitions</p><p>版本5.7以前，该项是explain partitions显示的选项，5.7以后成为了默认选项。该列显示的为分区表命中的分区情况。非分区表该字段为空（null）。</p><p>type</p><p>显示查询使用了何种类型，从最好到最差依次是：</p><p>system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;ALL</p><p>system：表只有一行记录（等于系统表），这是const类型的额特例，平时不会出现，这个也可以忽略不计。</p><p>const：表示通过索引一次就找到了，const用于比较primary key或者unique索引。因为只匹配一行数据，所以很快。如将主键止于where列表中，MySQL就能将该查询转换为一个常量。</p><p>eq_ref：唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描。</p><p>ref：非唯一性索引扫描，返回匹配每个单独之的所有行，本质上也是一种索引访问，他返回所有匹配每个单独值的行，然而，她可能会找到多个符合条件的行，所以他应该属于查找和扫描的混合体。</p><p>range：只检索给定范围的行，使用一个索引来选择行，key列显示使用了哪个索引，一般就是在你的where语句中出现了between、&lt;、&gt;、in等的查询，这种范围扫描索引比全表扫描要好，因为他只需要开始于索引的某一个点，而结束于另一点，不用扫描全部索引。</p><p>index：全索引扫描，index与ALL区别为index类型只遍历索引树，这通常比ALL快，因为索引文件通常比数据文件小。（虽然all和index都是读全表，但是index是从索引中读取的，而all是从硬盘中读的）。</p><p>ALL：全表扫描。</p><p>完整的：system&gt;const&gt;eq_ref&gt;ref&gt;fulltext&gt;ref_or_null&gt;index_merge&gt;unique_subquery&gt;index_subquery&gt;range&gt;index&gt;ALL。</p><p>备注：一般来说，保证查询至少到达range级别，最好能达到ref。</p><p>possible_keys</p><p>查询可能使用到的索引都会在这里列出来，可能是一个或多个，查询涉及到的字段上若存在索引，则索引将被列出，但是不一定被查询实际应用。</p><p>key</p><p>实际使用的索引，如果为null，则没有使用索引，查询中若使用了覆盖索引，则该索引仅出现在key列表中。</p><p>key_len</p><p>表示索引中使用的字节数，可通过该列计算查询中使用的索引长度，在不损失精确性的情况下，长度越短越好，key_len显示的值为索引字段的最大可能长度，并非实际使用长度，因为key_len是根据表定义计算而得，不是通过表内检索。</p><p>ref</p><p>显示索引的哪一列被使用了，如果可能的话，是一个常数，哪些列或常量被用于查找索引列上的值。</p><p>rows</p><p>根据表统计信息及索引需用情况，大致估算出找到所需的记录所需读取的行数。</p><p>filtered</p><p>这个字段表示存储引擎返回的数据在server层过滤后，剩下多少满足查询的记录数量的比例，注意是百分比，不是具体记录数。这个字段不重要</p><p>Extra</p><p>十分重要的额外信息。</p><p>using fliesort：说明MySQL会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。MySQL无法利用索引完成的排序操作称为“文件排序”。需要优化。</p><p>using temporary：使用了临时表保存中间结果，MySQL在对查询结果排序时使用了临时表，常见于排序order by 和分组查询group by。需要优化。</p><p>using index：标识响应的select操作中使用了覆盖索引（Covering Index），避免访问了表的数据行，效率不错！如果同时出现using where 表明索引被用来执行索引键值的查找；如果没有同时出现using where，表明索引用来读取数据而非执行查找动作。</p><p>覆盖索引（Covering Index）：就是select的数据列只用从索引中就能够取得，不必读取数据行，MySQL可以利用索引返回select列表中的字段，而不必根据索引再次读取数据文件，换句话说查询列要被所建的索引覆盖。</p><p>using where：表明使用了where过滤。</p><p>using join buffer：使用了连接缓存。</p><p>impossible where：where子句的值总是false，不能用来获取任何元组。</p><p>select tables optimized away：在没有group by 子句的情况下，基于索引优化min/max操作或者对于MyISAM存储引擎优化count（*）操作，不必等到执行阶段再计算，查询执行计划生成阶段即完成优化。</p><p>distinct：优化distinct操作，在找到第一匹配的元组后即停止找同样值的动作。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;explain详解&lt;br&gt;简介&lt;br&gt;​ 使用explain关键字可以模拟优化器执行sql语句，从而知道MySQL是如何处理你的sql语句。分析你的查询语句或是表结构的性能瓶颈。&lt;/p&gt;
+&lt;p&gt;那使用explain具体可以得到哪些信息呢？&lt;/p&gt;
+&lt;p&gt;根据id字段可以得到</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>java8的日期时间与字符串的转换.md</title>
