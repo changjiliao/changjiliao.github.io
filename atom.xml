@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-06-27T06:43:47.819Z</updated>
+  <updated>2022-11-12T10:19:46.385Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>判空</title>
+    <link href="http://example.com/2022/11/12/%E5%88%A4%E7%A9%BA/"/>
+    <id>http://example.com/2022/11/12/%E5%88%A4%E7%A9%BA/</id>
+    <published>2022-11-12T10:14:46.000Z</published>
+    <updated>2022-11-12T10:19:46.385Z</updated>
+    
+    <content type="html"><![CDATA[<p>空指针异常一般分为以下几种情况：</p><p>1.object对象为null，为null的情况大多数都是上一步的查询方法没有查到结果，此时通过object来get其中的属性的时候会报异常<br>2.对象集合为空，然后get(0)或者遍历的时候没有获取到对象<br>3.字段值为null，此时又拿字段去做比较还是什么，也会报异常</p><p>对象为空的话我们常用的就是以下方式jdk的util包里的方法</p><p>Objects.isNull(obj)<br>Objects.nonNull(obj)<br>obj != null<br>obj == null</p><p>集合为空的话最常用的就是Spring里带的方法</p><p>CollectionUtils.isEmpty(list)<br>list.size() &gt; 0</p><p>字段值为null的时候常用的是</p><p>Strings.isBlank(str)<br>StringUtil.isEmpty(str)<br>StringUtils.isBlank(str)</p><p>使用Optional判空<br>java.util.Optional<T></p><p>Optional主要用作方法返回类型，其中明确需要表示“无结果”，并且使用null可能导致错误。 类型为Optional变量本身不应该是null ; 它应始终指向Optional实例</p><p>常用方法</p><p>get()<br>如果存在值，则返回该值，否则抛出 NoSuchElementException。</p><p>of()<br>此处不能传入对象为null的数据，如果user为null的话会报空指针异常，如果传入的是一个””空字符串的话不会报错，不过输出内容什么都没有。<br>User user = new User();<br>Optional<User> result = Optional.of(user);<br>System.out.println(result.get()); </p><p>输出结果：User(name=null, sex=null, time=null)</p><p>ofNullable()<br>返回描述给定值的 Optional ，如果 null ，否则返回空的 Optional，此时不能进行.get()操作。<br>User user = new User();<br>Optional<User> result = Optional.ofNullable(user);<br>System.out.println(result.get()); </p><p>输出结果：User(name=null, sex=null, time=null)</p><p>isPresent()<br>如果存在值，则返回 true ，否则返回 false 。<br>User user = new User();<br>Optional<User> optional = Optional.ofNullable(user);<br>System.out.println(optional.isPresent());</p><p>输出结果：true</p><p>isEmpty()–&gt;JDK11出现<br>如果值不存在，则返回 true ，否则返回 false 。<br>User user = new User();<br>user = null;<br>Optional<User> optional = Optional.ofNullable(user);<br>System.out.println(optional.isEmpty());</p><p>输出结果：true</p><p>ifPresent()<br>如果存在值，则使用值执行给定操作，否则不执行任何操作，如果下面给user赋值为null的话，下面则不会执行输出语句，也不会报错，输出内容什么都没有<br>User user = new User();<br>Optional<User> optional = Optional.ofNullable(user);<br>optional.ifPresent(e-&gt; System.out.println(“user”));</p><p>输出结果：user</p><p>ifPresentOrElse()–&gt;JDK9出现<br>如果存在值，则使用值执行给定操作，否则执行给定的基于空的操作<br>User user = new User();<br>Optional<User> optional = Optional.ofNullable(user);<br>optional.ifPresentOrElse( x -&gt; System.out.println(“Value: “ + x),() -&gt; System.out.println(“Not Present.”));<br>optional = Optional.empty(); // 给optional对象赋空值<br>optional.ifPresentOrElse( x -&gt; System.out.println(“Value: “ + x),() -&gt; System.out.println(“Not Present”));</p><p>输出结果：<br>Value: 1<br>Not Present</p><p>filter()<br>如果存在值，并且值与给定谓词匹配，则返回描述该值的 Optional ，否则返回空 Optional 。<br>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>optional.filter(e-&gt;”aaa”.equals(e.getName())).ifPresent(e-&gt; System.out.println(“aaa”));</p><p>输出结果：aaa</p><p>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>optional.filter(e-&gt;”bbb”.equals(e.getName())).ifPresent(e-&gt; System.out.println(“aaa”));</p><p>输出结果：<br>其实就是结果啥都没有，有疑问可往上看ifPresent()方法</p><p>map()<br>如果值存在时，返回一个Optional描述（仿佛由ofNullable(T)(ofNullable(T)) ）将所述给定的映射函数的值的结果，否则返回一个空Optional 。如果映射函数返回null结果，则此方法返回空Optional 。<br>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>System.out.println(optional.map(User::getName).get());</p><p>输出结果：aaa</p><p>flatMap()<br>如果存在值，则返回将给定的Optional mapping函数应用于该值的结果，否则返回空Optional 。<br>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>Optional<String> user1 = optional.flatMap(e -&gt; Optional.ofNullable(e.getName()));<br>System.out.println(user1.get());</p><p>输出结果：aaa</p><p>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>Optional<String> user1 = optional.flatMap(e -&gt; Optional.ofNullable(e.getSex()));<br>System.out.println(user1);//此处没有进行.get()方法，因为sex属性没有设置值，所以调用.get()方法会报错。有疑问可往上看ofNullable()方法</p><p>输出结果：Optional.empty</p><p>orElse()<br>如果存在值，则返回该值，否则返回 other.<br>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>System.out.println(optional.orElse(new User().setSex(“男”)));</p><p>输出结果：User(name=aaa, sex=null, time=null)</p><p>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>optional = Optional.empty();<br>System.out.println(optional.orElse(new User().setSex(“男”)));</p><p>输出结果：User(name=null, sex=男, time=null)</p><p>orElseGet()<br>如果存在值，则返回该值，否则返回由供应函数生成的结果。<br>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>User user1 = optional.orElseGet(() -&gt; new User().setName(“sss”));<br>System.out.println(user1);</p><p>输出结果：User(name=aaa, sex=null, time=null)</p><p>User user = new User().setName(“aaa”);<br>user = null;<br>Optional<User> optional = Optional.ofNullable(user);<br>User user1 = optional.orElseGet(() -&gt; new User().setName(“sss”));<br>System.out.println(user1);</p><p>输出结果：User(name=sss, sex=null, time=null)</p><p>orElseThrow()<br>如果存在值，则返回该值，否则抛出 NoSuchElementException。<br>User user = new User().setName(“aaa”);<br>Optional<User> optional = Optional.ofNullable(user);<br>User user1 = optional.orElseThrow(RuntimeException::new);<br>System.out.println(user1);</p><p>输出结果：User(name=aaa, sex=null, time=null)</p><p>User user = new User().setName(“aaa”);<br>user = null;<br>Optional<User> optional = Optional.ofNullable(user);<br>User user1 = optional.orElseThrow(RuntimeException::new);<br>System.out.println(user1);</p><p>结果：抛异常：RuntimeException</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;空指针异常一般分为以下几种情况：&lt;/p&gt;
+&lt;p&gt;1.object对象为null，为null的情况大多数都是上一步的查询方法没有查到结果，此时通过object来get其中的属性的时候会报异常&lt;br&gt;2.对象集合为空，然后get(0)或者遍历的时候没有获取到对象&lt;br&gt;3.字段</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>explain详解.md</title>
