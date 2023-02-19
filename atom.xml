@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-12T10:19:46.385Z</updated>
+  <updated>2023-02-19T04:10:59.124Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>普罗米修斯配置</title>
+    <link href="http://example.com/2023/02/19/%E6%99%AE%E7%BD%97%E7%B1%B3%E4%BF%AE%E6%96%AF%E9%85%8D%E7%BD%AE/"/>
+    <id>http://example.com/2023/02/19/%E6%99%AE%E7%BD%97%E7%B1%B3%E4%BF%AE%E6%96%AF%E9%85%8D%E7%BD%AE/</id>
+    <published>2023-02-19T03:39:52.000Z</published>
+    <updated>2023-02-19T04:10:59.124Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.pom文件添加依赖</p><!--prometheus监控  https://prometheus.io/docs/introduction/overview/--><pre><code>    &lt;dependency&gt;        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;        &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;    &lt;/dependency&gt;    &lt;!--prometheus监控  https://prometheus.io/docs/introduction/overview/--&gt;    &lt;dependency&gt;        &lt;groupId&gt;io.micrometer&lt;/groupId&gt;        &lt;artifactId&gt;micrometer-registry-prometheus&lt;/artifactId&gt;    &lt;/dependency&gt;</code></pre><p> 2.配置文件添加以下配置<br> management:<br>  #prometheus+grafana+springboot2监控集成配置<br>  metrics:<br>    export:<br>      prometheus:<br>        enabled: true<br>      jmx:<br>        enabled: true<br>  endpoints:<br>    web:<br>      exposure:<br>        include: ‘*’<br>  3.权限过滤类排除/actuator/**路径<br>  4.访问localhost:{port}/actuator<br>  5.安装普罗米修斯服务端并修改prometheus.yml<br>  6.添加job<br>  #这是新增的监控job，是配置nacos-consul-adapter适配器的服务，也就是我的网关</p><ul><li>job_name: ‘consul-prometheus-test’<br>metrics_path: ‘/actuator/prometheus’<br>consul_sd_configs:<br>#这里是nacos-consul-adapter适配器的服务，也就是我的网关的ip和端口号<ul><li>server: ‘127.0.0.1:8080’</li></ul></li></ul><p>  7.访问<a href="http://localhost:9090就可以访问prometheus,在status-&gt;target选项可以查看注册到普罗米修斯上的服务">http://localhost:9090就可以访问prometheus,在status-&gt;target选项可以查看注册到普罗米修斯上的服务</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1.pom文件添加依赖&lt;/p&gt;
+&lt;!--prometheus监控  https://prometheus.io/docs/introduction/overview/--&gt;
+&lt;pre&gt;&lt;code&gt;    &amp;lt;dependency&amp;gt;
+        &amp;lt;grou</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>判空</title>
