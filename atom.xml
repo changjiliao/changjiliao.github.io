@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-02-19T04:10:59.124Z</updated>
+  <updated>2023-06-05T05:10:09.987Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java生成火焰图</title>
+    <link href="http://example.com/2023/06/05/java%E7%94%9F%E6%88%90%E7%81%AB%E7%84%B0%E5%9B%BE/"/>
+    <id>http://example.com/2023/06/05/java%E7%94%9F%E6%88%90%E7%81%AB%E7%84%B0%E5%9B%BE/</id>
+    <published>2023-06-05T05:09:00.000Z</published>
+    <updated>2023-06-05T05:10:09.987Z</updated>
+    
+    <content type="html"><![CDATA[<p>火焰图是用来分析程序运行瓶颈的工具。在纵向，表示的是调用栈的深度；横向表明的是消耗的时间。所以格子的宽度越大，越说明它可能是一个瓶颈。<br>火焰图也可以用来分析Java应用。可以从github上下载async-profiler的压缩包 进行相关操作。<br>比如，我们把它解压到/root/目录。然后以javaagent的方式来启动Java应用。命令行如下：<br>java -agentpath:/root/build/libasyncProfiler.so=start,svg,file=profile.svg -jar spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar</p><p>运行一段时间后，停止进程，可以看到在当前目录下，生成了profile.svg文件，这个文件是可以用浏览器打开的，一层层向下浏览，即可找到需要优化的目标。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;火焰图是用来分析程序运行瓶颈的工具。在纵向，表示的是调用栈的深度；横向表明的是消耗的时间。所以格子的宽度越大，越说明它可能是一个瓶颈。&lt;br&gt;火焰图也可以用来分析Java应用。可以从github上下载async-profiler的压缩包 进行相关操作。&lt;br&gt;比如，我们把它</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>普罗米修斯配置</title>

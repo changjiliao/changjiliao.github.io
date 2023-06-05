@@ -86,6 +86,74 @@
 
       <div class="outer">
         <section id="main">
+  <article id="post-java生成火焰图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/06/05/java%E7%94%9F%E6%88%90%E7%81%AB%E7%84%B0%E5%9B%BE/">java生成火焰图</a>
+    </h1>
+  
+
+
+      </header>
+    
+    <div class="article-meta">
+      
+      <span class="article-date">
+  <i class="fa fa-date"></i>
+  <time class="dt-published" datetime="2023-06-05T05:09:00.000Z" itemprop="datePublished">2023年06月05日</time>
+</span>
+      
+      
+      
+<a href="/2023/06/05/java%E7%94%9F%E6%88%90%E7%81%AB%E7%84%B0%E5%9B%BE/#comments" class="article-comment-link">
+  
+  <i class="fa fa-commt"></i>
+  留言
+</a>
+
+
+    </div>
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>火焰图是用来分析程序运行瓶颈的工具。在纵向，表示的是调用栈的深度；横向表明的是消耗的时间。所以格子的宽度越大，越说明它可能是一个瓶颈。<br>火焰图也可以用来分析Java应用。可以从github上下载async-profiler的压缩包 进行相关操作。<br>比如，我们把它解压到/root/目录。然后以javaagent的方式来启动Java应用。命令行如下：<br>java -agentpath:/root/build/libasyncProfiler.so=start,svg,file=profile.svg -jar spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar</p>
+<p>运行一段时间后，停止进程，可以看到在当前目录下，生成了profile.svg文件，这个文件是可以用浏览器打开的，一层层向下浏览，即可找到需要优化的目标。</p>
+
+        
+        
+          <blockquote id="copyright">
+              <p>原文链接: <a href="http://example.com/index.html">http://example.com/index.html</a></p>
+              <p>版权声明: 转载请注明出处.</p>
+          </blockquote>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div class="article-tag-wrap">
+          
+
+          
+          
+    <div class="social-share">
+      <span>分享到:</span>
+    </div>
+
+
+
+        </div>
+      
+      
+      
+    </footer>
+  </div>
+</article>
+
+
   <article id="post-普罗米修斯配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner">
     
@@ -1071,84 +1139,11 @@
 </article>
 
 
-  <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/17/hello-world/">Hello World</a>
-    </h1>
-  
 
+    <nav id="page-nav">
 
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2021-12-17T06:49:33.859Z" itemprop="datePublished">2021年12月17日</time>
-</span>
-      
-      
-      
-<a href="/2021/12/17/hello-world/#comments" class="article-comment-link">
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-        
-        
-          <blockquote id="copyright">
-              <p>原文链接: <a href="http://example.com/index.html">http://example.com/index.html</a></p>
-              <p>版权声明: 转载请注明出处.</p>
-          </blockquote>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          
-    <div class="social-share">
-      <span>分享到:</span>
-    </div>
-
-
-
-        </div>
-      
-      
-      
-    </footer>
-  </div>
-</article>
-
+<span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+</nav>
 
 
 </section>
@@ -1160,6 +1155,10 @@
     <h3 class="widget-title"><i class="fa fa-posts"></i> 最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/06/05/java%E7%94%9F%E6%88%90%E7%81%AB%E7%84%B0%E5%9B%BE/">java生成火焰图</a>
+          </li>
         
           <li>
             <a href="/2023/02/19/%E6%99%AE%E7%BD%97%E7%B1%B3%E4%BF%AE%E6%96%AF%E9%85%8D%E7%BD%AE/">普罗米修斯配置</a>
@@ -1177,10 +1176,6 @@
             <a href="/2022/04/20/java8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2-md/">java8的日期时间与字符串的转换.md</a>
           </li>
         
-          <li>
-            <a href="/2022/03/22/list%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-md/">list常用方法.md</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1196,7 +1191,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title"><i class="fa fa-archive"></i> 归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年11月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年12月</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023年06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022年11月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021年12月</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

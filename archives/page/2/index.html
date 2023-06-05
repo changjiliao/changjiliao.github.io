@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <title>java8的日期时间与字符串的转换.md | 小世界</title>
+  <title>归档 | 小世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
   
@@ -85,136 +85,41 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-java8的日期时间与字符串的转换-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
+
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      java8的日期时间与字符串的转换.md
-    </h1>
-  
-
-
-      </header>
-    
-    <div class="article-meta">
-      
-      <span class="article-date">
-  <i class="fa fa-date"></i>
-  <time class="dt-published" datetime="2022-04-20T07:43:08.000Z" itemprop="datePublished">2022年04月20日</time>
-</span>
-      
-      
-        <span class="article-views">
-  <i class="fa fa-views"></i>
-  <i id="busuanzi_container_page_pv">
-      <i id="busuanzi_value_page_pv"></i>
-  </i>
-</span>
-
-      
-      
-<a href="/2022/04/20/java8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2-md/#comments" class="article-comment-link">
   
     
     
-    
-    
-    
-      <i id="changyan_count_unit" data-xid="/2022/04/20/java8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BD%AC%E6%8D%A2-md/"></i>
-    
-  
-  <i class="fa fa-commt"></i>
-  留言
-</a>
-
-
-    </div>
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>LocalDate<br>用于处理日期，yyyy-MM-dd格式。</p>
-<p>LocalDate的基本用法<br>LocalDate localDate = LocalDate.now();<br>###获取当前日期<br>String format = LocalDate.now().format(DateTimeFormatter.ofPattern(“yyyy-MM-dd”));<br>###LocalDate转String<br>LocalDate parse = LocalDate.parse(“2020-01-17”, DateTimeFormatter.ofPattern(“yyyy-MM-dd”));<br>###String转LocalDate<br>Date date = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());<br>###LocalDate转Date<br>LocalDate localDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();<br>###Date转LocalDate</p>
-<p>LocalTime<br>用于处理时间，HH:mm:ss格式。</p>
-<p>LocalTime的基本用法<br>LocalTime now = LocalTime.now();<br>###获取当前时间<br>String format = LocalTime.now().format(DateTimeFormatter.ofPattern(“HH:mm:ss”));<br>###LocalTime转String<br>LocalTime parse = LocalTime.parse(“14:32:24”, DateTimeFormatter.ofPattern(“HH:mm:ss”));<br>###String转LocalTime<br>这个需要转换成LocalDateTime在转换成LocalTime<br>LocalTime localTime = LocalTime.now();<br>    LocalDate localDate = LocalDate.now();<br>    LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime);<br>    ZoneId zone = ZoneId.systemDefault();<br>    Instant instant = localDateTime.atZone(zone).toInstant();<br>    java.util.Date date = Date.from(instant);<br>###LocalTime转Date<br>LocalTime localTime = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();<br>###Date转LocalTime</p>
-<p>LocalDateTime<br>用于处理 yyyy-MM-dd HH:mm:ss格式的时间</p>
-<p>LocalDateTime的基本用法<br>LocalDateTime localDateTime= LocalDateTime.now();<br>###获取当前时间<br>LocalDateTime.now().format(DateTimeFormatter.ofPattern(“yyyy-MM-dd HH:mm:ss”))<br>###LocalDateTime转String<br>LocalDateTime parse = LocalDateTime.parse(“2020-01-17 11:52:04”, DateTimeFormatter.ofPattern(“yyyy-MM-dd HH:mm:ss”));<br>###String转LocalDateTime<br>Date from = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());<br>###LocalDateTime转Date<br>LocalDateTime localDateTime = LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault());<br>###Date转LocalDateTime</p>
-
+    <section class="archives-wrap">
+      <div class="archive-title">
         
-            <div id="toc-article">
-                
-  <div class="widget-wrap" id="toc-wrap">
-    <h3 class="widget-title"><i class="fa fa-toc"></i> 文章目录</h3>
-    <div class="widget">
-      
-    </div>
-  </div>
-
-
-            </div>
-        
-        
-          <blockquote id="copyright">
-              <p>原文链接: <a href="http://example.com/2022/04/20/java8的日期时间与字符串的转换-md/">http://example.com/2022/04/20/java8的日期时间与字符串的转换-md/</a></p>
-              <p>版权声明: 转载请注明出处.</p>
-          </blockquote>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <div class="article-tag-wrap">
-          
-
-          
-          
-    <div class="social-share">
-      <span>分享到:</span>
-    </div>
-
-
-
-        </div>
-      
-      
-        
-<nav id="article-nav">
-  
-    <a href="/2022/06/27/explain%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <div class="article-nav-title">
-        
-          explain详解.md
+          <i class="fa fa-date"></i>
+          2021
         
       </div>
+      <div class="archives">
+  
+  <ul class="archive-article archive-type-post">
+  <li class="archive-article-inner">
+    <a href="/2021/12/17/hello-world/">
+      <time class="dt-published" datetime="2021-12-17T06:49:33.859Z" itemprop="datePublished">2021年12月17日</time>
+      | <span class="archive-article-title">Hello World</span>
     </a>
-  
-  
-    <a href="/2022/03/22/list%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">older</strong>
-      <div class="article-nav-title">list常用方法.md</div>
-    </a>
-  
+  </li>
+</ul>
+
+
+
+  </div></section>
+
+
+    <nav id="page-nav">
+
+<a class="extend prev" rel="prev" href="/archives/">上一页</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
 </nav>
 
-      
-      
-        
 
-
-
-
-
-
-  <div id="SOHUCS" sid="2022/04/20/java8的日期时间与字符串的转换-md/"></div>
-
-
-      
-    </footer>
-  </div>
-</article>
 </section>
         
           <aside id="sidebar">
